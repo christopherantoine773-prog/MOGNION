@@ -3,8 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DarkGPT Interface</title>
+    <title>DARKGPT | Système Autonome</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ajustements pour que l'iframe soit parfaite */
+        #chat-window {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+    </style>
 </head>
 <body>
 
@@ -18,19 +33,15 @@
     </aside>
 
     <main class="chat-area">
+        <!-- Intégration directe de votre bot Render -->
         <div id="chat-window">
-            <!-- Messages ici -->
+            <iframe 
+                src="https://mognion.onrender.com" 
+                title="DARKGPT Interface">
+            </iframe>
         </div>
-
-        <div class="input-container">
-            <div class="toolbar">
-                <button class="tool-btn">📎 Image</button>
-                <button class="tool-btn">🎥 Vidéo</button>
-                <button class="tool-btn">💾 Exporter</button>
-            </div>
-            <textarea placeholder="Envoyez un message à DarkGPT..." rows="1"></textarea>
-            <button class="send-btn">Envoyer</button>
-        </div>
+        
+        <!-- Note : La zone input-container est masquée car Gradio gère déjà ses propres inputs -->
     </main>
 </div>
 
