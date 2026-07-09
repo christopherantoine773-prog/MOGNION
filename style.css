@@ -1,64 +1,87 @@
 :root {
-    --bg-color: #000000;
-    --panel-color: #1c1c1e;
-    --text-color: #ffffff;
-    --accent-color: #0a84ff; /* Bleu iOS */
+    --bg-dark: #0a0a0a;
+    --panel-bg: rgba(255, 255, 255, 0.05);
+    --accent-neon: #00f2ff;
+    --text-main: #e0e0e0;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-color: var(--bg-dark);
+    color: var(--text-main);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     margin: 0;
+}
+
+.app-container {
     display: flex;
-    justify-content: center;
     height: 100vh;
 }
 
-.chat-container {
-    width: 100%;
-    max-width: 800px;
+/* Sidebar iOS style */
+.sidebar {
+    width: 260px;
+    background: rgba(20, 20, 20, 0.8);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+}
+
+/* Zone de chat */
+.chat-area {
+    flex: 1;
     display: flex;
     flex-direction: column;
     padding: 20px;
 }
 
-.chat-box {
-    flex: 1;
-    overflow-y: auto;
-    margin-bottom: 20px;
-}
-
-.input-area {
-    background: var(--panel-color);
-    padding: 10px 20px;
-    border-radius: 25px; /* Style iOS très arrondi */
+/* Input container "iOS 20" */
+.input-container {
+    background: var(--panel-bg);
+    backdrop-filter: blur(15px);
+    border-radius: 24px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
+    flex-direction: column;
     gap: 10px;
-    align-items: center;
-    border: 1px solid #333;
 }
 
-input {
+textarea {
     background: transparent;
     border: none;
     color: white;
-    flex: 1;
-    padding: 10px;
+    font-size: 16px;
+    resize: none;
     outline: none;
 }
 
-button {
-    background-color: var(--accent-color);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.2s;
+.toolbar {
+    display: flex;
+    gap: 15px;
 }
 
-button:active {
-    transform: scale(0.95); /* Effet de clic iOS */
+.tool-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--accent-neon);
+    padding: 8px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tool-btn:hover {
+    background: var(--accent-neon);
+    color: black;
+    box-shadow: 0 0 15px var(--accent-neon);
+}
+
+.send-btn {
+    background: var(--accent-neon);
+    color: black;
+    border: none;
+    padding: 12px;
+    border-radius: 18px;
+    font-weight: bold;
+    cursor: pointer;
 }
