@@ -2,22 +2,134 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DARKGPT | Système Autonome</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DARK AI Console | MOGNION</title>
     <style>
-        /* Ajustements pour que l'iframe soit parfaite */
+        /* --- CSS PRO & THEME NOIR --- */
+        :root {
+            --bg-color: #000000; /* Noir total */
+            --sidebar-bg: #111111; /* Gris très foncé */
+            --text-color: #e0e0e0; /* Gris clair pour le texte */
+            --accent-color: #00ff00; /* Vert néon */
+            --border-color: #222222;
+            --font-family: 'Courier New', Courier, monospace; /* Look console */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-family);
+        }
+
+        body, html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Empêche le double scroll */
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .app-container {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px var(--accent-color);
+        }
+
+        .nav-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 12px 15px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            border-radius: 4px;
+        }
+
+        .nav-btn:hover {
+            background-color: #1a1a1a;
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            box-shadow: 0 0 8px rgba(0, 255, 0, 0.3);
+        }
+
+        .nav-btn.active {
+            background-color: var(--border-color);
+            color: var(--accent-color);
+        }
+
+        /* --- Chat Area & Masquage des Logs --- */
+        .chat-area {
+            flex-grow: 1;
+            position: relative;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         #chat-window {
             width: 100%;
             height: 100%;
-            display: flex;
-            justify-content: center;
+            position: relative;
+            background-color: var(--bg-color); /* Fond noir pour masquer les logs */
         }
+
         iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             border: none;
-            border-radius: 12px;
+            z-index: 2; /* Place le chat au-dessus du fond noir */
+            background-color: var(--bg-color); /* S'assure que l'iframe elle-même est noire au chargement */
+        }
+
+        /* --- Responsive iPhone --- */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none; /* Cache le menu sur mobile pour maximiser l'espace */
+            }
+        }
+
+        /* Ajout d'un message de chargement si le serveur est lent */
+        .loading-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--accent-color);
+            z-index: 1;
+            font-size: 0.8rem;
         }
     </style>
 </head>
@@ -25,23 +137,22 @@
 
 <div class="app-container">
     <aside class="sidebar">
-        <div class="logo">DARKGPT</div>
-        <nav>
-            <button class="nav-btn">Nouveau Chat</button>
-            <button class="nav-btn">Historique</button>
-        </nav>
+        <div class="logo">MOGNION</div>
+        <div class="nav-group">
+            <button class="nav-btn active">DARK AI Console</button>
+            <button class="nav-btn">Paramètres</button>
+            <button class="nav-btn">Documentation API</button>
+        </div>
     </aside>
 
     <main class="chat-area">
-        <!-- Intégration directe de votre bot Render -->
+        <div class="loading-overlay">INITIALISATION DU NOYAU...</div>
         <div id="chat-window">
             <iframe 
                 src="https://mognion.onrender.com" 
-                title="DARKGPT Interface">
+                title="DARK AI Interface">
             </iframe>
         </div>
-        
-        <!-- Note : La zone input-container est masquée car Gradio gère déjà ses propres inputs -->
     </main>
 </div>
 
