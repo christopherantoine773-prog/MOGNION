@@ -1,5 +1,6 @@
 transformers
 torch
+gradio
 accelerate
 bitsandbytes
 sentencepiece
